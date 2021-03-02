@@ -4,18 +4,14 @@ part 'quiz.freezed.dart';
 
 @freezed
 abstract class Quiz with _$Quiz {
-  const factory Quiz({
-    /// This is the name of the product.
-    ///
-    /// It's required must not be null.
+  const factory Quiz.subjective({
     @required String title,
+    @required String answer,
+  }) = Subjective;
 
-    /// This shows if the helpline is used or not
-    ///
-    /// It is false by default
+  const factory Quiz.objective({
+    @required String title,
     @Default(false) bool isHelplineUsed,
     int totalNoOfQuestions,
-  }) = _Quiz;
+  }) = Objective;
 }
-
-
