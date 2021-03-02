@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_app/modules/Quiz/cubit/quiz_cubit.dart';
 import 'package:freezed_app/ui/quiz_screen.dart';
 
 void main() {
@@ -14,7 +16,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: QuizScreen(),
+      home: BlocProvider<QuizCubit>(
+        create: (context) => QuizCubit()..fetchApi(),
+        child: QuizScreen(),
+      ),
     );
   }
 }
