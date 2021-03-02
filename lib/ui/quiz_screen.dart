@@ -12,9 +12,9 @@ class QuizScreen extends StatelessWidget {
       ),
       body: BlocBuilder<QuizCubit, QuizState>(
         builder: (context, state) {
-          return state.when(
-            initial: () => Center(
-              child: Text("Api has hasn't been called yet"),
+          return state.maybeWhen(
+            orElse: () => Center(
+              child: CircularProgressIndicator(),
             ),
             loading: () => Center(
               child: CircularProgressIndicator(),
@@ -29,7 +29,13 @@ class QuizScreen extends StatelessWidget {
             ),
             error: (String message) => Center(
               child: Container(
-                child: Text(message),
+                child: Text(
+                  message,
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 18,
+                  ),
+                ),
               ),
             ),
           );
@@ -41,24 +47,24 @@ class QuizScreen extends StatelessWidget {
   _buildSubjectiveQuiz(Subjective sQuiz) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.green,
+        child: Center(child: Text("SQ")),
       ),
       title: Text(sQuiz.title),
-      subtitle: Text(sQuiz.answer),
+      subtitle: Text("Click to type answer"),
     );
   }
 
   _buildObjectiveQuiz(Objective oQyuz) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.blue,
+        child: Center(child: Text("OQ")),
       ),
       title: Text(
         "Test quiz",
       ),
-      subtitle: Text(
-        "subtitle",
-      ),
+      subtitle: Text("${oQyuz.totalNoOfQuestions} Questions"),
     );
   }
 }

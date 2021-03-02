@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_app/modules/Quiz/cubit/quiz_cubit.dart';
 import 'package:freezed_app/ui/quiz_screen.dart';
 
+import 'core/locator.dart';
+
 void main() {
+  initLocator();
   runApp(MyApp());
 }
 
